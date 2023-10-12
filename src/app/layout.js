@@ -1,3 +1,4 @@
+import { ReduxProvider } from '../redux/provider'
 import './globals.css'
 import { Barlow } from 'next/font/google'
 
@@ -13,7 +14,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={barlow.className}>
-        {children}
+        <ReduxProvider>{children}</ReduxProvider>
       </body>
     </html>
   )

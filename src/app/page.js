@@ -1,5 +1,6 @@
 import Cards from "./components/cards";
 import Filters from "./components/filters";
+
 import Navbar from "./components/navbar";
 
 export default function Home() {
