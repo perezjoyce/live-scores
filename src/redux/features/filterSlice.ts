@@ -1,11 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 type InitialState = {
-   value: FilterState
+   value: {
+      currentFilter: FilterObj,
+      count: CountObj,
+   }
 }
 
-type FilterState = {
-   currentFilter: FilterObj,
+export type CountObj = {
+   all: number,
+   result: number,
+   live: number,
+   upcoming: number,
 }
 
 export enum FilterType {
@@ -50,26 +56,38 @@ export const StatusMap = new Map([
 
 const initialState = {
    value: {
-      currentFilter: FilterMap.get(FilterType.All) as FilterObj
-   } as FilterState
+      count: {
+         all: null,
+         result: null,
+         live: null,
+         upcoming: null,
+      } as CountObj,
+      currentFilter: FilterMap.get(FilterType.All) as FilterObj,
+   }
 } as InitialState
 
 export const filter = createSlice({
    name: "filter",
    initialState,
    reducers: {
-      setFilter: (_, action: PayloadAction<string>) => {
+      setFilter: (state, action: PayloadAction<string>) => {
          return {
             value: {
+               ...state.value,
                currentFilter: FilterMap.get(action.payload)
             }
          }
       },
-      resetFilter: () => {
-         return initialState
+      setCounters: (state, action: PayloadAction<CountObj>) => {
+         return {
+            value: {
+               ...state.value,
+               count: action.payload,
+            }
+         }
       }
    }
 })
 
-export const { setFilter, resetFilter } = filter.actions
+export const { setFilter, setCounters } = filter.actions
 export default filter.reducer

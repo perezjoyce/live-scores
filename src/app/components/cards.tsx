@@ -13,15 +13,17 @@ function getSportsData(currentFilter: string, currentPage: number, setTotalPageN
 
    const DATA_PER_PAGE = 12;
    const TOTAL_DATA_COUNT = data.length;
-   const PAGE_COUNT = Math.floor(TOTAL_DATA_COUNT / DATA_PER_PAGE);
+   const PAGE_COUNT = Math.ceil(TOTAL_DATA_COUNT / DATA_PER_PAGE);
    setTotalPageNums(PAGE_COUNT)
 
-   const paginatedData = Array.from({ length: PAGE_COUNT }, () => {
-      const start = currentPage * DATA_PER_PAGE;
+   const paginatedData = Array.from({ length: PAGE_COUNT }, (_, index) => {
+      const start = index * DATA_PER_PAGE;
       return data.slice(start, start + DATA_PER_PAGE);
-   })[0];
+   });
 
-   return paginatedData.map(
+   const dataForCurrentPage = paginatedData[currentPage - 1];
+
+   return dataForCurrentPage.map(
       ({ id, competition, country, timestamp, status, homeTeam, awayTeam, homeScore, awayScore, liveStatus }) => (
          {
             id,

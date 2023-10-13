@@ -2,7 +2,7 @@
 "use client"
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { FilterType, setFilter } from '../../redux/features/filterSlice'
+import { CountObj, FilterObj, FilterType, setFilter } from '../../redux/features/filterSlice'
 import { goToPage } from '../../redux/features/paginationSlice'
 import { AppDispatch, useAppSelector } from '../../redux/store'
 import { Dialog } from '@headlessui/react'
@@ -10,7 +10,7 @@ import { XMarkIcon, FunnelIcon } from '@heroicons/react/24/outline'
 
 export default function Drawer() {
    const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false)
-   const currentFilter = useAppSelector((state) => state.filterReducer.value.currentFilter)
+   const { currentFilter, count }: { currentFilter: FilterObj, count: CountObj } = useAppSelector((state) => state.filterReducer.value)
    const dispatch = useDispatch<AppDispatch>();
    const onClickFilter = (filter: string): void => {
       dispatch(setFilter(filter))
@@ -52,7 +52,13 @@ export default function Drawer() {
                <div className="mt-6 flow-root">
                   <div className="flex flex-col space-y-2 py-6">
                      {Object.values(FilterType).map(filterType => (
-                        <DrawerItem key={filterType} currentFilter={currentFilter.type} filterType={filterType} onClick={onClickFilter} />
+                        <DrawerItem
+                           key={filterType}
+                           currentFilter={currentFilter.type}
+                           filterType={filterType}
+                           count={count?.[filterType]}
+                           onClick={onClickFilter}
+                        />
                      ))}
                   </div>
                </div>
@@ -62,7 +68,7 @@ export default function Drawer() {
    )
 }
 
-function DrawerItem({ currentFilter, filterType, onClick }: { currentFilter: FilterType, filterType: FilterType, onClick: (filter: string) => void }) {
+function DrawerItem({ currentFilter, filterType, count, onClick }: { currentFilter: FilterType, filterType: FilterType, count: number, onClick: (filter: string) => void }) {
    const isSelected = currentFilter === filterType
    const stateBasedStyle = isSelected ? 'text-indigo-600 bg-gray-100' : 'text-gray-700 hover:border-gray-100 hover:bg-gray-100'
 
@@ -73,7 +79,7 @@ function DrawerItem({ currentFilter, filterType, onClick }: { currentFilter: Fil
          className={`flex justify-between rounded-lg p-3 font-semibold leading-7 ${stateBasedStyle}`}
       >
          <span> {filterType}</span>
-         <small className='ml-3'>10</small>
+         <small className='ml-3'>{count}</small>
       </button>
    )
 }
