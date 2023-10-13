@@ -1,4 +1,4 @@
-import { StatusObj } from "../redux/features/filterSlice";
+import { StatusObj } from "@/redux/features/filterSlice";
 
 export type Game = {
    id: string,

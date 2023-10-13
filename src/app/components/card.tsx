@@ -1,21 +1,16 @@
 import { memo } from 'react'
-import Progress from './progress'
-import { Game } from '../../types'
-import { StatusType, StatusObj } from '../../redux/features/filterSlice';
-import { formatTime } from '../utils';
+import { StatusType, StatusObj } from '@/redux/features/filterSlice';
+import { Game } from '@/types/index.js'
+import formatTime from '@/utils/formatTime'
+import Progress from '@/components/progress'
 
-function getStatusColor(statusType: StatusType): string {
-   switch (statusType) {
-      case StatusType.Finished:
-         return "text-green-500"
-      case StatusType.Inprogress:
-         return "text-yellow-400"
-      case StatusType.Canceled:
-         return "text-red-400"
-      default:
-         return "text-gray-400"
-   }
-}
+const STATUS_COLOR = new Map([
+   [StatusType.Finished, "text-green-500"],
+   [StatusType.Inprogress, "text-yellow-400"],
+   [StatusType.Canceled, "text-red-400"],
+   [StatusType.NotStarted, "text-gray-400"],
+   [StatusType.All, "text-gray-400"],
+])
 
 function getStatusLabel(status: StatusObj, timestamp: number): string {
    if (status.type !== StatusType.NotStarted) {
@@ -35,7 +30,7 @@ function Card({ game }: { game: Game }) {
       >
          <small className="text-gray-300 text-sm">{country.toUpperCase()}</small>
          <h3 className="font-bold text-xl">{competition}</h3>
-         <small className={`${getStatusColor(status.type)} text-sm`}>{getStatusLabel(status, timestamp)}</small>
+         <small className={`${STATUS_COLOR.get(status.type)} text-sm`}>{getStatusLabel(status, timestamp)}</small>
          <p className="text-4xl my-4">{homeTeam.score} - {awayTeam.score}</p>
          <div className="grid grid-cols-3 justify-items-center items-center">
             <span className="font-semibold">{homeTeam.name}</span>

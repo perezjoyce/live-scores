@@ -2,10 +2,26 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "resolveJsonModule": true,
+    "baseUrl": "src/",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ]
+      "@/types/*": [
+        "types/*"
+      ],
+      "@/redux/*": [
+        "redux/*"
+      ],
+      "@/data/*": [
+        "data/*"
+      ],
+      "@/app/*": [
+        "app/*"
+      ],
+      "@/components/*": [
+        "app/components/*"
+      ],
+      "@/utils/*": [
+        "app/utils/*"
+      ],
     }
   }
 }

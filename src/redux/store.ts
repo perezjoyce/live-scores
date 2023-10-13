@@ -1,8 +1,7 @@
-import { configureStore } from '@reduxjs/toolkit'
-import filterReducer from './features/filterSlice'
-import paginationReducer from './features/paginationSlice'
 import { TypedUseSelectorHook, useSelector } from 'react-redux'
-
+import { configureStore } from '@reduxjs/toolkit'
+import filterReducer from '@/redux/features/filterSlice'
+import paginationReducer from '@/redux/features/paginationSlice'
 
 export const store = configureStore({
    reducer: {

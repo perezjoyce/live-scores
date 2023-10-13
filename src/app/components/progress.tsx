@@ -1,12 +1,11 @@
 "use client"
-import { memo, useCallback } from "react"
-import { stripNonNumChars } from '../utils'
+import stripNonNumChars from '@/utils/stripNonNumChars'
 
 const MAX_LIVE_STATUS_MINS = 90
 const STROKE_DASH_ARRAY = 250
 
 export default function Progress({ liveStatus }: { liveStatus: string }) {
-   function getLabel(): string {
+   function getProgressLabel(): string {
       if (!["Canceled", "-"].includes(liveStatus)) {
          return liveStatus;
       }
@@ -46,7 +45,7 @@ export default function Progress({ liveStatus }: { liveStatus: string }) {
 
    return (
       <div className="w-20 h-20 relative">
-         <p className="text-green-500 absolute top-7 left-8">{getLabel()}</p>
+         <p className="text-green-500 absolute top-7 left-8">{getProgressLabel()}</p>
 
          <svg className="w-full h-full" viewBox="0 0 100 100">
             <circle

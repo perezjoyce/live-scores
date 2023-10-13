@@ -1,14 +1,16 @@
 "use client"
 import { useCallback, useMemo } from 'react'
-import { setTotalPages } from '../../redux/features/paginationSlice'
 import { useDispatch } from "react-redux"
-import { AppDispatch, useAppSelector } from '../../redux/store'
-import MemoizedCard from './card'
-import * as sports from '../../data/sports.json'
-import { FilterType, StatusMap, StatusType } from '../../redux/features/filterSlice'
-import { Game } from '../../types'
+import * as sports from '@/data/sports.json'
+import { Game } from '@/types/index'
+import { AppDispatch, useAppSelector } from '@/redux/store'
+import { FilterType, StatusMap, StatusType } from '@/redux/features/filterSlice'
+import { setTotalPages } from '@/redux/features/paginationSlice'
+import MemoizedCard from '@/components/card'
 
-function getSportsData(currentFilter: string, currentPage: number, setTotalPageNums: (num) => void): Game[] {
+function getSportsData(
+   currentFilter: string, currentPage: number, setTotalPageNums: (num) => void)
+   : Game[] {
    const data = Array.from(sports).filter(item => item.status.type === getFilterAsStatus(currentFilter, item.status.type))
 
    const DATA_PER_PAGE = 12;
@@ -44,8 +46,8 @@ function getSportsData(currentFilter: string, currentPage: number, setTotalPageN
       ))
 }
 
-function getFilterAsStatus(filteType: string, itemStatusType): string {
-   switch (filteType) {
+function getFilterAsStatus(filterType: string, itemStatusType): string {
+   switch (filterType) {
       case FilterType.Live:
          return StatusType.Inprogress
       case FilterType.Upcoming:

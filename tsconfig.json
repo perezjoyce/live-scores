@@ -1,5 +1,26 @@
 {
   "compilerOptions": {
+    "baseUrl": "src/",
+    "paths": {
+      "@/types/*": [
+        "types/*"
+      ],
+      "@/redux/*": [
+        "redux/*"
+      ],
+      "@/data/*": [
+        "data/*"
+      ],
+      "@/app/*": [
+        "app/*"
+      ],
+      "@/components/*": [
+        "app/components/*"
+      ],
+      "@/utils/*": [
+        "app/utils/*"
+      ],
+    },
     "lib": [
       "dom",
       "dom.iterable",
@@ -20,7 +41,7 @@
       {
         "name": "next"
       }
-    ]
+    ],
   },
   "include": [
     "next-env.d.ts",
