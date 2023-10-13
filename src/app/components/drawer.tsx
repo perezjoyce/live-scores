@@ -2,7 +2,7 @@
 "use client"
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { FilterTypes, setFilter } from '../../redux/features/filterSlice'
+import { FilterType, setFilter } from '../../redux/features/filterSlice'
 import { AppDispatch, useAppSelector } from '../../redux/store'
 import { Dialog } from '@headlessui/react'
 import { XMarkIcon, FunnelIcon } from '@heroicons/react/24/outline'
@@ -49,8 +49,8 @@ export default function Drawer() {
                </div>
                <div className="mt-6 flow-root">
                   <div className="flex flex-col space-y-2 py-6">
-                     {FilterTypes.map(filterType => (
-                        <DrawerItem currentFilter={currentFilter} filterType={filterType} onClick={onClickFilter} />
+                     {Object.values(FilterType).map(filterType => (
+                        <DrawerItem key={filterType} currentFilter={currentFilter.type} filterType={filterType} onClick={onClickFilter} />
                      ))}
                   </div>
                </div>
@@ -60,7 +60,7 @@ export default function Drawer() {
    )
 }
 
-function DrawerItem({ currentFilter, filterType, onClick }) {
+function DrawerItem({ currentFilter, filterType, onClick }: { currentFilter: FilterType, filterType: FilterType, onClick: (filter: string) => void }) {
    const isSelected = currentFilter === filterType
    const stateBasedStyle = isSelected ? 'text-indigo-600 bg-gray-100' : 'text-gray-700 hover:border-gray-100 hover:bg-gray-100'
 
