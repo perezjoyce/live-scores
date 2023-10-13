@@ -4,8 +4,8 @@ import { Game } from '../../types'
 import { StatusType, StatusObj } from '../../redux/features/filterSlice';
 import { formatTime } from '../utils';
 
-function getStatusColor(statusType: StatusType) : string {
-   switch(statusType) {
+function getStatusColor(statusType: StatusType): string {
+   switch (statusType) {
       case StatusType.Finished:
          return "text-green-500"
       case StatusType.Inprogress:
@@ -17,11 +17,11 @@ function getStatusColor(statusType: StatusType) : string {
    }
 }
 
-function getStatusLabel(status: StatusObj, timestamp: number) : string {
-   if(status.type !== StatusType.NotStarted){
+function getStatusLabel(status: StatusObj, timestamp: number): string {
+   if (status.type !== StatusType.NotStarted) {
       return status.label
    }
-   
+
    return formatTime(timestamp);
 }
 

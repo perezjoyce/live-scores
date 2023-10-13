@@ -4,7 +4,7 @@ type InitialState = {
    value: PaginationState
 }
 
-type PaginationState = {
+export type PaginationState = {
    currentPage: number,
    totalPages: number,
 }
@@ -12,7 +12,7 @@ type PaginationState = {
 const initialState = {
    value: {
       currentPage: 1,
-      totalPages: 1,
+      totalPages: 0,
    } as PaginationState
 } as InitialState
 
@@ -20,6 +20,14 @@ export const pagination = createSlice({
    name: "pagination",
    initialState,
    reducers: {
+      setTotalPages: (state, action) => {
+         return {
+            value: {
+               ...state.value,
+               totalPages: action.payload,
+            }
+         }
+      },
       goToNextPage: (state) => {
          const { currentPage, totalPages } = state.value
          const nextPage = currentPage + 1
@@ -60,5 +68,5 @@ export const pagination = createSlice({
 })
 
 
-export const { goToNextPage, goToPrevPage, goToPage } = pagination.actions
+export const { setTotalPages, goToNextPage, goToPrevPage, goToPage } = pagination.actions
 export default pagination.reducer

@@ -1,25 +1,27 @@
 "use client"
-import { useMemo } from 'react'
+import { useCallback, useMemo } from 'react'
+import { setTotalPages } from '../../redux/features/paginationSlice'
+import { useDispatch } from "react-redux"
 import { AppDispatch, useAppSelector } from '../../redux/store'
 import MemoizedCard from './card'
 import * as sports from '../../data/sports.json'
 import { FilterType, StatusMap, StatusType } from '../../redux/features/filterSlice'
 import { Game } from '../../types'
 
-function getSportsData(currentFilter: string, currentPage: number): Game[] {
-   const data = sports.filter(item => item.status.type === getFilterAsStatus(currentFilter, item.status.type))
+function getSportsData(currentFilter: string, currentPage: number, setTotalPageNums: (num) => void): Game[] {
+   const data = Array.from(sports).filter(item => item.status.type === getFilterAsStatus(currentFilter, item.status.type))
 
-   //Todo! PAGINATION
-   // const DATA_PER_PAGE = 10;
-   // const TOTAL_DATA_COUNT = data.length;
-   // const PAGE_COUNT = Math.ceil(TOTAL_DATA_COUNT / DATA_PER_PAGE);
+   const DATA_PER_PAGE = 12;
+   const TOTAL_DATA_COUNT = data.length;
+   const PAGE_COUNT = Math.floor(TOTAL_DATA_COUNT / DATA_PER_PAGE);
+   setTotalPageNums(PAGE_COUNT)
 
-   // const paginatedData = Array.from({ length: PAGE_COUNT }, (_, index) => {
-   //    const start = index * DATA_PER_PAGE;
-   //    return data.slice(start, start + DATA_PER_PAGE);
-   // })[0];
+   const paginatedData = Array.from({ length: PAGE_COUNT }, () => {
+      const start = currentPage * DATA_PER_PAGE;
+      return data.slice(start, start + DATA_PER_PAGE);
+   })[0];
 
-   const formattedData = data.map(
+   return paginatedData.map(
       ({ id, competition, country, timestamp, status, homeTeam, awayTeam, homeScore, awayScore, liveStatus }) => (
          {
             id,
@@ -38,8 +40,6 @@ function getSportsData(currentFilter: string, currentPage: number): Game[] {
             liveStatus,
          } as Game
       ))
-
-   return formattedData;
 }
 
 function getFilterAsStatus(filteType: string, itemStatusType): string {
@@ -58,7 +58,10 @@ function getFilterAsStatus(filteType: string, itemStatusType): string {
 export default function Cards() {
    const currentFilter = useAppSelector((state) => state.filterReducer.value.currentFilter)
    const currentPage = useAppSelector((state) => state.paginationReducer.value.currentPage)
-   const sportsData = useMemo(() => getSportsData(currentFilter.type, currentPage), [currentFilter, currentPage])
+   const dispatch = useDispatch<AppDispatch>();
+   const setTotalPageNums = useCallback((totalPages) => dispatch(setTotalPages(totalPages)), [currentFilter, currentPage])
+   const sportsData = useMemo(() => getSportsData(currentFilter.type, currentPage, setTotalPageNums), [currentFilter, currentPage])
+
    return (
       <section className="bg-gray-200 grow overflow-y-scroll" >
          <div className="mx-auto max-w-7xl px-4 py-6" >

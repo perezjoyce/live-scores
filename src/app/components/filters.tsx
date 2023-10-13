@@ -1,5 +1,6 @@
 "use client"
 import { setFilter, FilterType, FilterObj } from '../../redux/features/filterSlice'
+import { goToPage } from '../../redux/features/paginationSlice'
 import { useDispatch } from 'react-redux'
 import { AppDispatch, useAppSelector } from '../../redux/store'
 import Pagination from './pagination';
@@ -11,13 +12,14 @@ export default function Filters() {
    const dispatch = useDispatch<AppDispatch>();
    const onClickFilter = (filter: string): void => {
       dispatch(setFilter(filter))
+      dispatch(goToPage(1))
    }
 
    return (
       <section className="bg-white px-4 pb-4">
          <div className="flex flex-row justify-between content-center mx-auto max-w-7xl">
             <div className='flex flex-row content-center items-center'>
-               <h2 className="text-xl font-semibold tracking-tight text-gray-900 lg:ml-3 mr-3">All Games {JSON.stringify(currentFilter)}</h2>
+               <h2 className="text-xl font-semibold tracking-tight text-gray-900 lg:ml-3 mr-3">{capitalizeFirstLetter(currentFilter.type)} Games</h2>
                <Pagination />
             </div>
 

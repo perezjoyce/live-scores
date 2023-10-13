@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { FilterType, setFilter } from '../../redux/features/filterSlice'
+import { goToPage } from '../../redux/features/paginationSlice'
 import { AppDispatch, useAppSelector } from '../../redux/store'
 import { Dialog } from '@headlessui/react'
 import { XMarkIcon, FunnelIcon } from '@heroicons/react/24/outline'
@@ -13,6 +14,7 @@ export default function Drawer() {
    const dispatch = useDispatch<AppDispatch>();
    const onClickFilter = (filter: string): void => {
       dispatch(setFilter(filter))
+      dispatch(goToPage(1))
    }
 
    return (

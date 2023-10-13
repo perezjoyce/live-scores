@@ -6,35 +6,35 @@ const MAX_LIVE_STATUS_MINS = 90
 const STROKE_DASH_ARRAY = 250
 
 export default function Progress({ liveStatus }: { liveStatus: string }) {
-   function getLabel() : string {
-      if(!["Canceled", "-"].includes(liveStatus)) {
+   function getLabel(): string {
+      if (!["Canceled", "-"].includes(liveStatus)) {
          return liveStatus;
       }
       return ""
    }
-   
-   function getProgress() : React.ReactNode | null {
-      if(!["Canceled", "-"].includes(liveStatus)) {
+
+   function getProgress(): React.ReactNode | null {
+      if (!["Canceled", "-"].includes(liveStatus)) {
          return (
             <circle
                id="progress-ring"
                className="text-green-500 stroke-current"
-               stroke-width="4"
-               stroke-linecap="round"
+               strokeWidth="4"
+               strokeLinecap="round"
                cx="50"
                cy="50"
                r="40"
                fill="none"
-               stroke-dasharray={STROKE_DASH_ARRAY} 
-               stroke-dashoffset={getOffset()}
+               strokeDasharray={STROKE_DASH_ARRAY}
+               strokeDashoffset={getOffset()}
                transform="rotate(-90) translate(-100 0)"
-               />
+            />
          )
       }
    }
-   
-   function getOffset() : string {
-      switch(liveStatus) {
+
+   function getOffset(): string {
+      switch (liveStatus) {
          case "FT":
             return "0"
          case "HT":
@@ -51,7 +51,7 @@ export default function Progress({ liveStatus }: { liveStatus: string }) {
          <svg className="w-full h-full" viewBox="0 0 100 100">
             <circle
                className="text-gray-700 stroke-current"
-               stroke-width="4"
+               strokeWidth="4"
                cx="50"
                cy="50"
                r="40"
