@@ -3,11 +3,11 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Dialog } from '@headlessui/react'
-import { XMarkIcon, FunnelIcon } from '@heroicons/react/24/outline'
 import { AppDispatch, useAppSelector } from '@/redux/store'
 import { CountObj, FilterObj, FilterType, setFilter } from '@/redux/features/filterSlice'
 import { goToPage } from '@/redux/features/paginationSlice'
 import { capitalizeFirstLetter } from '../utils'
+import { FUNNEL_ICON, X_MARK_ICON } from '@/assets/icons'
 
 export default function Drawer() {
    const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false)
@@ -27,7 +27,7 @@ export default function Drawer() {
                onClick={() => setMobileMenuOpen(true)}
             >
                <span className="sr-only">Open main menu</span>
-               <FunnelIcon className="h-6 w-6" aria-hidden="true" />
+               {FUNNEL_ICON}
             </button>
          </div>
          <Dialog
@@ -54,7 +54,7 @@ export default function Drawer() {
                      onClick={() => setMobileMenuOpen(false)}
                   >
                      <span className="sr-only">Close menu</span>
-                     <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+                     {X_MARK_ICON}
                   </button>
                </div>
                <div className="mt-6 flow-root">

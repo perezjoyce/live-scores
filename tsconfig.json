@@ -11,6 +11,9 @@
       "@/data/*": [
         "data/*"
       ],
+      "@/assets/*": [
+        "assets/*"
+      ],
       "@/app/*": [
         "app/*"
       ],
