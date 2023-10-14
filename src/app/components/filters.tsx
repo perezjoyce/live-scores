@@ -6,9 +6,7 @@ import { AppDispatch, useAppSelector } from '@/redux/store'
 import { setFilter, FilterType, FilterObj, CountObj, setCounters } from '@/redux/features/filterSlice'
 import { goToPage } from '@/redux/features/paginationSlice'
 import capitalizeFirstLetter from '@/utils/capitalizeFirstLetter';
-import Pagination from '@/components/pagination';
 import Drawer from '@/components/drawer'
-
 
 function countSportsData(dispatch) {
    const groupedData = Array.from(sports).reduce((acc, cur) => {
@@ -43,15 +41,8 @@ export default function Filters() {
    }
 
    return (
-      <section className="bg-white px-4 pb-4">
-         <div className="flex flex-row justify-between content-center mx-auto max-w-7xl">
-            <div className='flex flex-row content-center items-center'>
-               <h2 className="text-xl font-semibold tracking-tight text-gray-900 lg:ml-3 mr-3">
-                  {capitalizeFirstLetter(currentFilter.type)} Games
-               </h2>
-               <Pagination />
-            </div>
-
+      <>
+         <div className="flex flex-row justify-between content-center">
             <ul className="hidden lg:flex gap-1">
                {Object.values(FilterType).map(filterType => (
                   <FilterItem
@@ -63,9 +54,9 @@ export default function Filters() {
                   />
                ))}
             </ul>
-            <Drawer />
          </div>
-      </section>
+         <Drawer />
+      </>
    )
 }
 
