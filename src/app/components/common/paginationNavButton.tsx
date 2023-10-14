@@ -8,7 +8,7 @@ export default function PaginationNavButton(
       customStyles = "",
    }: {
       onClick: () => void,
-      icon: React.ReactNode,
+      icon: React.JSX.Element,
       screenReaderLabel: string,
       customStyles: string,
    }

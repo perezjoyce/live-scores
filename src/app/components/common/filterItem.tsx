@@ -7,7 +7,7 @@ function FilterItem(
       filterType,
       count,
       onClick,
-      customStyles
+      customStyles,
    }: {
       currentFilter: FilterType,
       filterType: FilterType,
@@ -23,13 +23,13 @@ function FilterItem(
       <button
          className={`
             flex items-center rounded hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)]
-            ${customStyles}
+           ${customStyles}
             ${stateBasedStyle}
          `}
          onClick={() => onClick(filterType)}
       >
          <span className="font-medium">{capitalizeFirstLetter(filterType)}</span>&nbsp;
-         <small className="text-xs">{count && `(${count})`}</small>
+         <span className="text-xs">({count})</span>
       </button>
    )
 }

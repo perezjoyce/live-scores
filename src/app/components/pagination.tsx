@@ -39,9 +39,9 @@ export default function Pagination() {
             onChange={(e) => onChangePage(e)}
          />
 
-         <p className="relative inline-flex items-center px-4 py-2 text-gray-900">
+         <p className="relative inline-flex items-center px-4 py-2 text-gray-900" suppressHydrationWarning>
             <span className="mr-4">/</span>
-            {totalPages}
+            {totalPages ?? "..."}
          </p>
 
          <PaginationNavButton
