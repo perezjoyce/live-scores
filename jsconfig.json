@@ -22,6 +22,9 @@
       "@/components/*": [
         "app/components/*"
       ],
+      "@/common/*": [
+        "app/components/common/*"
+      ],
       "@/utils/*": [
         "app/utils/*"
       ],
