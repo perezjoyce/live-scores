@@ -1,78 +1,57 @@
 
 "use client"
-import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { Dialog } from '@headlessui/react'
 import { AppDispatch, useAppSelector } from '@/redux/store'
+import { toggleDrawer } from '@/redux/features/drawerSlice'
 import { CountObj, FilterObj, FilterType, setFilter } from '@/redux/features/filterSlice'
 import { goToPage } from '@/redux/features/paginationSlice'
 import { capitalizeFirstLetter } from '../utils'
-import { FUNNEL_ICON, X_MARK_ICON } from '@/assets/icons'
+import { X_MARK_ICON } from '@/assets/icons'
 
 export default function Drawer() {
-   const [mobileMenuOpen, setMobileMenuOpen] = useState<boolean>(false)
    const { currentFilter, count }: { currentFilter: FilterObj, count: CountObj } = useAppSelector((state) => state.filterReducer.value)
+
    const dispatch = useDispatch<AppDispatch>();
+
+   const onClickDrawerButton = (): void => {
+      dispatch(toggleDrawer())
+   }
+
    const onClickFilter = (filter: string): void => {
       dispatch(setFilter(filter))
       dispatch(goToPage(1))
    }
 
    return (
-      <>
-         <div className="flex lg:hidden">
+      <div
+         id="offcanvasBottom"
+         aria-labelledby="offcanvasBottomLabel"
+         data-te-offcanvas-init
+         className="fixed inset-y-1 z-10 bottom-0 left-0 right-0 h-[60%] translate-y-full bg-clip-padding bg-white p-6 flex flex-col"
+      >
+         <div className="flex items-center justify-end mb-4">
             <button
                type="button"
-               className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-               onClick={() => setMobileMenuOpen(true)}
+               className="-m-2.5 rounded-md p-2.5 text-gray-700"
+               onClick={onClickDrawerButton}
             >
-               <span className="sr-only">Open main menu</span>
-               {FUNNEL_ICON}
+               <span className="sr-only">Close menu</span>
+               {X_MARK_ICON}
             </button>
          </div>
-         <Dialog
-            as="div"
-            className="lg:hidden"
-            open={mobileMenuOpen}
-            onClose={setMobileMenuOpen}
-         >
-            <Dialog.Panel
-               className="fixed inset-y-0 right-0 z-10 w-4/5 overflow-y-auto bg-white p-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
-            >
-               <div className="flex items-center justify-between">
-                  <a href="#" className="-m-1.5 p-1.5">
-                     <span className="sr-only">Live Score</span>
-                     <img
-                        className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                        alt=""
-                     />
-                  </a>
-                  <button
-                     type="button"
-                     className="-m-2.5 rounded-md p-2.5 text-gray-700"
-                     onClick={() => setMobileMenuOpen(false)}
-                  >
-                     <span className="sr-only">Close menu</span>
-                     {X_MARK_ICON}
-                  </button>
-               </div>
-               <div className="mt-6 flow-root">
-                  <div className="flex flex-col space-y-2 py-6">
-                     {Object.values(FilterType).map(filterType => (
-                        <DrawerItem
-                           key={filterType}
-                           currentFilter={currentFilter.type}
-                           filterType={filterType}
-                           count={count?.[filterType]}
-                           onClick={onClickFilter}
-                        />
-                     ))}
-                  </div>
-               </div>
-            </Dialog.Panel>
-         </Dialog>
-      </>
+
+         <div className="flex flex-col space-y-2 pt-4">
+            {Object.values(FilterType).map(filterType => (
+               <DrawerItem
+                  key={filterType}
+                  currentFilter={currentFilter.type}
+                  filterType={filterType}
+                  count={count?.[filterType]}
+                  onClick={onClickFilter}
+               />
+            ))}
+         </div>
+      </div>
    )
 }
 
