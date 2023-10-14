@@ -1,7 +1,7 @@
 import { Suspense } from 'react';
 import { Barlow } from 'next/font/google'
 import { ReduxProvider } from '@/redux/provider'
-import Loading from '@/components/loading'
+import Loader from '@/app/components/loader'
 import './globals.css'
 
 const barlow = Barlow({ subsets: ['latin'], weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'] })
@@ -16,7 +16,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={barlow.className}>
-        <Suspense fallback={<Loading />}>
+        <Suspense fallback={<Loader />}>
           <ReduxProvider>{children}</ReduxProvider>
         </Suspense>
       </body>

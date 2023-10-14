@@ -1,20 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-
-type InitialState = {
-   value: PaginationState
-}
-
-export type PaginationState = {
-   currentPage: number,
-   totalPages: number,
-}
+import { InitialPaginationState, PaginationState } from '@/data/types'
 
 const initialState = {
    value: {
       currentPage: 1,
       totalPages: 0,
    } as PaginationState
-} as InitialState
+} as InitialPaginationState
 
 export const pagination = createSlice({
    name: "pagination",
@@ -55,6 +47,7 @@ export const pagination = createSlice({
       },
       goToPage: (state, action: PayloadAction<number>) => {
          const page = action.payload;
+
          if (page > 0 && page <= state.value.totalPages) {
             return {
                value: {
@@ -66,7 +59,6 @@ export const pagination = createSlice({
       }
    }
 })
-
 
 export const { setTotalPages, goToNextPage, goToPrevPage, goToPage } = pagination.actions
 export default pagination.reducer

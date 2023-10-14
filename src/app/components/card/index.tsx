@@ -1,24 +1,7 @@
 import { memo } from 'react'
-import { StatusType, StatusObj } from '@/redux/features/filterSlice';
-import { Game } from '@/types/index.js'
-import formatTime from '@/utils/formatTime'
-import Progress from '@/components/progress'
-
-const STATUS_COLOR = new Map([
-   [StatusType.Finished, "text-green-500"],
-   [StatusType.Inprogress, "text-yellow-400"],
-   [StatusType.Canceled, "text-red-400"],
-   [StatusType.NotStarted, "text-gray-400"],
-   [StatusType.All, "text-gray-400"],
-])
-
-function getStatusLabel(status: StatusObj, timestamp: number): string {
-   if (status.type !== StatusType.NotStarted) {
-      return status.label
-   }
-
-   return formatTime(timestamp);
-}
+import { Game } from '@/data/types.js'
+import Progress from '@/card/progress'
+import { STATUS_COLOR, getStatusLabel } from '@/card/utils'
 
 function Card({ game }: { game: Game }) {
    const { id, competition, country, timestamp, status, homeTeam, awayTeam, liveStatus } = game;

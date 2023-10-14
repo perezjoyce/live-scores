@@ -1,6 +1,6 @@
 import { memo } from 'react'
-import capitalizeFirstLetter from "@/app/utils/capitalizeFirstLetter"
-import { FilterType } from "@/redux/features/filterSlice"
+import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter"
+import { FilterType } from '@/data/types'
 
 function FilterItem(
    { currentFilter,

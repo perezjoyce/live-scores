@@ -1,6 +1,6 @@
 "use client"
+import { FilterObj } from '@/data/types';
 import { useAppSelector } from '@/redux/store'
-import { FilterObj } from '@/redux/features/filterSlice'
 import capitalizeFirstLetter from '@/utils/capitalizeFirstLetter';
 
 export default function Header() {

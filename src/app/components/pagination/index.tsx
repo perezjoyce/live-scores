@@ -1,8 +1,9 @@
 "use client"
 import { useDispatch } from "react-redux"
 import { AppDispatch, useAppSelector } from "@/redux/store"
-import { goToNextPage, goToPrevPage, goToPage, PaginationState } from '@/redux/features/paginationSlice'
-import { NEXT_ICON, PREV_ICON } from "@/assets/icons"
+import { PaginationState } from "@/data/types"
+import { goToNextPage, goToPrevPage, goToPage } from '@/redux/features/paginationSlice'
+import { NEXT_ICON, PREV_ICON } from "@/pagination/utils/icons"
 import PaginationNavButton from "@/common/paginationNavButton"
 
 export default function Pagination() {

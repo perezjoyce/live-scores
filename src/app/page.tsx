@@ -1,13 +1,14 @@
 "use client"
 import { useAppSelector } from '@/redux/store'
-import Cards from "@/components/cards"
-import Filters from "@/components/filters"
-import Header from "@/components/header"
-import Logo from "@/components/logo"
-import Pagination from "@/components/pagination"
+import Cards from "@/app/components/cards"
+import Filters from "@/app/components/filters"
+import Header from "@/app/components/header"
+import Logo from "@/app/components/logo"
+import Pagination from "@/app/components/pagination"
 
 import dynamic from 'next/dynamic'
-const Drawer = dynamic(() => import('@/components/drawer'))
+const DrawerButton = dynamic(() => import('@/app/components/drawerButton'))
+const Drawer = dynamic(() => import('@/app/components/drawer'))
 
 export default function Home() {
   const isDrawerOpen: boolean = useAppSelector((state) => state.drawerReducer.value.isDrawerOpen)
@@ -19,6 +20,7 @@ export default function Home() {
           <div className="flex flex-row justify-between content-center items-center mx-auto max-w-7xl">
             <Logo />
             <Filters />
+            <DrawerButton />
           </div>
         </section>
 

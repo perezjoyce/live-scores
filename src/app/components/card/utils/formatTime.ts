@@ -1,6 +1,6 @@
-export default function formatTime(timestamp: number) : string {
+export default function formatTime(timestamp: number): string {
   const date = new Date(timestamp * 1000);
-  const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUNE', 'JULY', 'AUG', 'SEPT', 'OCT', 'NOV', 'DEC',]; 
+  const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUNE', 'JULY', 'AUG', 'SEPT', 'OCT', 'NOV', 'DEC',];
   const month = months[date.getUTCDate()]
 
   const day = date.getDate()
@@ -10,7 +10,7 @@ export default function formatTime(timestamp: number) : string {
   return `${month} ${day}${(nth(day))} ${hours}:${mins}`
 }
 
-const nth = (day: number) : string => {
+const nth = (day: number): string => {
   if (day > 3 && day < 21) return "th";
   switch (day % 10) {
     case 1:

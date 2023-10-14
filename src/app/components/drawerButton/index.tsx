@@ -3,7 +3,7 @@
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '@/redux/store'
 import { toggleDrawer } from '@/redux/features/drawerSlice'
-import { FUNNEL_ICON } from '@/assets/icons'
+import { FUNNEL_ICON } from '@/drawerButton/utils/icons';
 
 export default function DrawerButton() {
    const dispatch = useDispatch<AppDispatch>();

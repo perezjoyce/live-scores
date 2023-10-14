@@ -4,29 +4,47 @@
     "resolveJsonModule": true,
     "baseUrl": "src/",
     "paths": {
-      "@/types/*": [
-        "types/*"
-      ],
-      "@/redux/*": [
-        "redux/*"
+      "@/app/*": [
+        "app/*"
       ],
       "@/data/*": [
         "data/*"
       ],
-      "@/assets/*": [
-        "assets/*"
+      "@/redux/*": [
+        "redux/*"
       ],
-      "@/app/*": [
-        "app/*"
+      "@/utils/*": [
+        "app/utils/*"
       ],
-      "@/components/*": [
-        "app/components/*"
+      "@/card/*": [
+        "app/components/card/*"
+      ],
+      "@/cards/*": [
+        "app/components/cards/*"
       ],
       "@/common/*": [
         "app/components/common/*"
       ],
-      "@/utils/*": [
-        "app/utils/*"
+      "@/drawer/*": [
+        "app/components/drawer/*"
+      ],
+      "@/drawerButton/*": [
+        "app/components/drawerButton/*"
+      ],
+      "@/filters/*": [
+        "app/components/filters/*"
+      ],
+      "@/header/*": [
+        "app/components/header/*"
+      ],
+      "@/loader/*": [
+        "app/components/loader/*"
+      ],
+      "@/logo/*": [
+        "app/components/logo/*"
+      ],
+      "@/pagination/*": [
+        "app/components/pagination/*"
       ],
     }
   }

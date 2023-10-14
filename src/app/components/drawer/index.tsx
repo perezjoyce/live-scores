@@ -1,12 +1,13 @@
 
 "use client"
 import { useDispatch } from 'react-redux'
+import { CountObj, FilterObj, FilterType } from '@/data/types'
 import { AppDispatch, useAppSelector } from '@/redux/store'
 import { toggleDrawer } from '@/redux/features/drawerSlice'
-import { CountObj, FilterObj, FilterType, setFilter } from '@/redux/features/filterSlice'
+import { setFilter } from '@/redux/features/filterSlice'
 import { goToPage } from '@/redux/features/paginationSlice'
-import { X_MARK_ICON } from '@/assets/icons'
 import MemoizedFilterItem from '@/common/filterItem'
+import { X_MARK_ICON } from '@/drawer/utils/icons'
 
 export default function Drawer() {
    const { currentFilter, count }: { currentFilter: FilterObj, count: CountObj } = useAppSelector((state) => state.filterReducer.value)

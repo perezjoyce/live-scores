@@ -1,25 +1,17 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit'
+import { DrawerState, InitialDrawerState } from '@/data/types'
 
-type InitialState = {
-   value: DrawerState
-}
-
-type DrawerState = {
-   isDrawerOpen: boolean,
-}
-
-const initialState = {
+export const initialState = {
    value: {
       isDrawerOpen: false
    } as DrawerState
-} as InitialState
+} as InitialDrawerState
 
 export const drawer = createSlice({
    name: 'drawer',
    initialState,
    reducers: {
       toggleDrawer: (state) => {
-         console.log(state.value)
          return {
             value: {
                isDrawerOpen: !state.value.isDrawerOpen
