@@ -20,7 +20,7 @@ export const pagination = createSlice({
    name: "pagination",
    initialState,
    reducers: {
-      setTotalPages: (state, action) => {
+      setTotalPages: (state, action: PayloadAction<number>) => {
          return {
             value: {
                ...state.value,

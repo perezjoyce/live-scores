@@ -1,11 +1,13 @@
 "use client"
 import { useAppSelector } from '@/redux/store'
-import Cards from "@/components/cards";
-import Drawer from "@/components/drawer"
-import Filters from "@/components/filters";
-import Header from "@/components/header";
-import Logo from "@/components/logo";
-import Pagination from "@/components/pagination";
+import Cards from "@/components/cards"
+import Filters from "@/components/filters"
+import Header from "@/components/header"
+import Logo from "@/components/logo"
+import Pagination from "@/components/pagination"
+
+import dynamic from 'next/dynamic'
+const Drawer = dynamic(() => import('@/components/drawer'))
 
 export default function Home() {
   const isDrawerOpen: boolean = useAppSelector((state) => state.drawerReducer.value.isDrawerOpen)

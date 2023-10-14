@@ -1,6 +1,7 @@
 "use client"
-import { useCallback, useMemo } from 'react'
+import { useMemo } from 'react'
 import { useDispatch } from "react-redux"
+import { Action, Dispatch } from '@reduxjs/toolkit'
 import * as sports from '@/data/sports.json'
 import { Game } from '@/types/index'
 import { AppDispatch, useAppSelector } from '@/redux/store'
@@ -9,14 +10,14 @@ import { setTotalPages } from '@/redux/features/paginationSlice'
 import MemoizedCard from '@/components/card'
 
 function getSportsData(
-   currentFilter: string, currentPage: number, setTotalPageNums: (num) => void)
+   currentFilter: string, currentPage: number, dispatch: Dispatch<Action>)
    : Game[] {
    const data = Array.from(sports).filter(item => item.status.type === getFilterAsStatus(currentFilter, item.status.type))
 
    const DATA_PER_PAGE = 12;
    const TOTAL_DATA_COUNT = data.length;
    const PAGE_COUNT = Math.ceil(TOTAL_DATA_COUNT / DATA_PER_PAGE);
-   setTotalPageNums(PAGE_COUNT)
+   dispatch(setTotalPages(PAGE_COUNT))
 
    const paginatedData = Array.from({ length: PAGE_COUNT }, (_, index) => {
       const start = index * DATA_PER_PAGE;
@@ -63,8 +64,7 @@ export default function Cards() {
    const currentFilter = useAppSelector((state) => state.filterReducer.value.currentFilter)
    const currentPage = useAppSelector((state) => state.paginationReducer.value.currentPage)
    const dispatch = useDispatch<AppDispatch>();
-   const setTotalPageNums = useCallback((totalPages) => dispatch(setTotalPages(totalPages)), [currentFilter, currentPage])
-   const sportsData = useMemo(() => getSportsData(currentFilter.type, currentPage, setTotalPageNums), [currentFilter, currentPage])
+   const sportsData = useMemo(() => getSportsData(currentFilter.type, currentPage, dispatch), [currentFilter, currentPage])
 
    return (
       <section className="bg-gray-200 grow overflow-y-scroll" >
