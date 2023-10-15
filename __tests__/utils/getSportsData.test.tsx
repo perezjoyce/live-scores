@@ -15,7 +15,7 @@ jest.mock('@reduxjs/toolkit', () => ({
    useDispatch: jest.fn(),
 }));
 
-describe('getSportsData function', () => {
+describe('getSportsData Function', () => {
    describe("result/finished sportsData", () => {
       it('should return all documents with "finish" status', () => {
          const filter = FilterType.Result
@@ -50,7 +50,7 @@ describe('getSportsData function', () => {
          expect(convertedData.length).toEqual(remainingDocsCount)
       })
 
-      it('should return documents with required fields', () => {
+      it('should return "finished" documents with required fields', () => {
          const filter = FilterType.Result
          const status = FINISHED_STATUS
          const currentPage = 1
@@ -109,7 +109,7 @@ describe('getSportsData function', () => {
          expect(convertedData.length).toBe(remainingDocsCount)
       })
 
-      it('should return documents with required fields', () => {
+      it('should return "inprogress" documents with required fields', () => {
          const status = INPROGRESS_STATUS
          const filter = FilterType.Live
          const currentPage = 1
@@ -168,7 +168,7 @@ describe('getSportsData function', () => {
          expect(convertedData.length).toBe(remainingDocsCount)
       })
 
-      it('should return documents with required fields', () => {
+      it('should return "nonstarted" documents with required fields', () => {
          const status = NOT_STARTED_STATUS
          const filter = FilterType.Upcoming
          const currentPage = 1

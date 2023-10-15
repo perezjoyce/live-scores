@@ -14,30 +14,52 @@ const MOCK_GAME = {
    liveStatus: 'HT',
 } as Game
 
-test('Card Component correctly displayS sample game data', () => {
-   const { getByText, getByTestId } = render(<Card game={MOCK_GAME} />)
+describe("Card Component ", () => {
+   test('should display the competition name', () => {
+      const { getByText } = render(<Card game={MOCK_GAME} />)
+      const competitionElement = getByText('Sample Competition')
+      expect(competitionElement).toBeInTheDocument()
+   })
 
-   const competitionElement = getByText('Sample Competition')
-   expect(competitionElement).toBeInTheDocument()
+   test("should display the country/host of competition", () => {
+      const { getByText } = render(<Card game={MOCK_GAME} />)
+      const countryElement = getByText('USA')
+      expect(countryElement).toBeInTheDocument()
+   })
 
-   const countryElement = getByText('USA')
-   expect(countryElement).toBeInTheDocument()
+   test("should contain the game status element", () => {
+      const { getByTestId } = render(<Card game={MOCK_GAME} />)
+      const gameStatusElement = getByTestId('status-1')
+      expect(gameStatusElement).toBeInTheDocument()
+   })
 
-   const gameStatusElement = getByTestId('status-1')
-   expect(gameStatusElement).toBeInTheDocument()
+   test("should display the score of both teams", () => {
+      const { getByText } = render(<Card game={MOCK_GAME} />)
+      const scoreElement = getByText('2 - 1')
+      expect(scoreElement).toBeInTheDocument()
+   })
 
-   const scoreElement = getByText('2 - 1')
-   expect(scoreElement).toBeInTheDocument()
+   test("should display the home team", () => {
+      const { getByText } = render(<Card game={MOCK_GAME} />)
+      const homeTeamElement = getByText('Home Team')
+      expect(homeTeamElement).toBeInTheDocument()
+   })
 
-   const homeTeamElement = getByText('Home Team')
-   expect(homeTeamElement).toBeInTheDocument()
+   test("should display the away team", () => {
+      const { getByText } = render(<Card game={MOCK_GAME} />)
+      const awayTeamElement = getByText('Away Team')
+      expect(awayTeamElement).toBeInTheDocument()
+   })
 
-   const awayTeamElement = getByText('Away Team')
-   expect(awayTeamElement).toBeInTheDocument()
+   test("should display a progres indicator", () => {
+      const { getByTestId } = render(<Card game={MOCK_GAME} />)
+      const progressElement = getByTestId('progressIndicator')
+      expect(progressElement).toBeInTheDocument()
+   })
 
-   const progressElement = getByTestId('progressIndicator')
-   expect(progressElement).toBeInTheDocument()
-
-   const liveStatus = getByText('HT')
-   expect(liveStatus).toBeInTheDocument()
-});
+   test("should display the live status", () => {
+      const { getByText } = render(<Card game={MOCK_GAME} />)
+      const liveStatus = getByText('HT')
+      expect(liveStatus).toBeInTheDocument()
+   })
+})

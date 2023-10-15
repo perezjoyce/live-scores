@@ -10,7 +10,7 @@ jest.mock('@reduxjs/toolkit', () => ({
    useDispatch: jest.fn(),
 }));
 
-describe('countSportsData function', () => {
+describe('countSportsData Function', () => {
    it('should count all sports data', () => {
       const mockDispatch = jest.fn()
       const counters = countSportsData(mockDispatch)

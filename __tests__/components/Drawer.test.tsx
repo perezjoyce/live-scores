@@ -1,56 +1,64 @@
-import React from 'react';
-import { render, screen, fireEvent } from '../!customRender';
+import React from 'react'
+import { render, screen, fireEvent } from '../!customRender'
 import Drawer from "@/app/components/drawer"
 
-describe('Drawer', () => {
+const ALL_FILTER_TEXT = "All"
+const RESULT_FILTER_TEXT = "Result"
+const LIVE_FILTER_TEXT = "Live"
+const UPCOMING_FILTER_TEXT = "Upcoming"
+const ACTIVE_FILTER_CLASS = "text-indigo-600"
+const INACTIVE_FILTER_CLASS = "text-gray-700"
+const HIDDEN_CLASS = "hidden"
+
+describe('Drawer Component', () => {
    test('should have five buttons', () => {
-      render(<Drawer />);
-
+      render(<Drawer />)
       const buttons = screen.getAllByRole('button')
-      expect(buttons).toHaveLength(5);
-   });
+      expect(buttons).toHaveLength(5)
+   })
 
-   test('should render filter labels', () => {
-      render(<Drawer />);
+   test('should display filter labels', () => {
+      render(<Drawer />)
 
-      const all = screen.getByText('All');
-      const result = screen.getByText('Result');
-      const live = screen.getByText('Live')
-      const upcoming = screen.getByText('Upcoming');;
+      const allButton = screen.getByText(ALL_FILTER_TEXT)
+      const resultButton = screen.getByText(RESULT_FILTER_TEXT)
+      const liveButton = screen.getByText(LIVE_FILTER_TEXT)
+      const upcomingButton = screen.getByText(UPCOMING_FILTER_TEXT)
 
-      expect(all).toBeInTheDocument();
-      expect(result).toBeInTheDocument();
-      expect(live).toBeInTheDocument();
-      expect(upcoming).toBeInTheDocument();
-   });
+      expect(allButton).toBeInTheDocument()
+      expect(resultButton).toBeInTheDocument()
+      expect(liveButton).toBeInTheDocument()
+      expect(upcomingButton).toBeInTheDocument()
+   })
 
-   test('should be highlighted when clicked', () => {
-      render(<Drawer />);
+   test('should add an ACTIVE_FILTER_CLASS to the clicked filter', () => {
+      render(<Drawer />)
 
       const buttons = screen.getAllByRole('button')
       const [_, allButton, resultButton, liveButton, upcomingButton] = buttons
 
-      fireEvent.click(resultButton);
-      expect(resultButton).toHaveClass('text-indigo-600');
+      fireEvent.click(resultButton)
 
-      expect(allButton).not.toHaveClass('text-indigo-600');
-      expect(liveButton).not.toHaveClass('text-indigo-600');
-      expect(upcomingButton).not.toHaveClass('text-indigo-600');
+      expect(resultButton).toHaveClass(ACTIVE_FILTER_CLASS)
 
-      expect(allButton).toHaveClass('text-gray-700');
-      expect(liveButton).toHaveClass('text-gray-700');
-      expect(upcomingButton).toHaveClass('text-gray-700');
-   });
+      expect(allButton).not.toHaveClass(ACTIVE_FILTER_CLASS)
+      expect(liveButton).not.toHaveClass(ACTIVE_FILTER_CLASS)
+      expect(upcomingButton).not.toHaveClass(ACTIVE_FILTER_CLASS)
 
-   test('should be hidden when close button is clicked', () => {
-      render(<Drawer />);
+      expect(allButton).toHaveClass(INACTIVE_FILTER_CLASS)
+      expect(liveButton).toHaveClass(INACTIVE_FILTER_CLASS)
+      expect(upcomingButton).toHaveClass(INACTIVE_FILTER_CLASS)
+   })
 
-      const drawer = screen.getByTestId('offcanvasBottom');
-      expect(drawer).toBeInTheDocument();
+   test('should add a HIDDEN_CLASS when the X button is clicked', () => {
+      render(<Drawer />)
 
-      const closeBtn = screen.getByTestId('closeOffCanvasBottom');
-      fireEvent.click(closeBtn);
+      const drawer = screen.getByTestId('offcanvasBottom')
+      expect(drawer).toBeInTheDocument()
 
-      expect(drawer).toHaveProperty("hidden")
-   });
-});
+      const closeBtn = screen.getByTestId('closeOffCanvasBottom')
+      fireEvent.click(closeBtn)
+
+      expect(drawer).toHaveProperty(HIDDEN_CLASS)
+   })
+})

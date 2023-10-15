@@ -12,29 +12,29 @@ const FORMATTED_TIMESTAMP3 = "OCT 15th 01:06"
 const TIMESTAMP4 = 1482289961
 const FORMATTED_TIMESTAMP4 = "DEC 21st 03:12"
 
-describe('formatTime', () => {
-   it("sets the correct month", () => {
+describe('formatTime Function', () => {
+   it("should set the correct month", () => {
       expect(formatTime(TIMESTAMP1)).toContain("JAN")
       expect(formatTime(TIMESTAMP2)).toContain("AUG")
       expect(formatTime(TIMESTAMP3)).toContain("OCT")
       expect(formatTime(TIMESTAMP4)).toContain("DEC")
    })
 
-   it("sets the correct nth day", () => {
+   it("should set the correct nth day", () => {
       expect(formatTime(TIMESTAMP1)).toContain("1st")
       expect(formatTime(TIMESTAMP2)).toContain("7th")
       expect(formatTime(TIMESTAMP3)).toContain("15th")
       expect(formatTime(TIMESTAMP4)).toContain("21st")
    })
 
-   it("sets the correct time", () => {
+   it("should set the correct time", () => {
       expect(formatTime(TIMESTAMP1)).toContain("04:18")
       expect(formatTime(TIMESTAMP2)).toContain("14:30")
       expect(formatTime(TIMESTAMP3)).toContain("01:06")
       expect(formatTime(TIMESTAMP4)).toContain("03:12")
    })
 
-   it("sets the correct FORMATTED_ time", () => {
+   it("should set the correct FORMATTED_ time", () => {
       expect(formatTime(TIMESTAMP1)).toBe(FORMATTED_TIMESTAMP1)
       expect(formatTime(TIMESTAMP2)).toBe(FORMATTED_TIMESTAMP2)
       expect(formatTime(TIMESTAMP3)).toBe(FORMATTED_TIMESTAMP3)

@@ -8,20 +8,20 @@ const CANCELED = StatusMap.get("canceled")
 const NOTSTARTED = StatusMap.get("notstarted")
 const FORMATTED_TIMESTAMP = "DEC 21st 03:12"
 
-describe("getStatusLabel", () => {
-   it("returns the status label if the status type is ENDED", () => {
+describe("getStatusLabel Function", () => {
+   it("should return the status label if the status type is ENDED", () => {
       expect((getStatusLabel(ENDED, TIMESTAMP))).toBe(ENDED.label)
    })
 
-   it("returns the status label if the status type is LIVE", () => {
+   it("should return the status label if the status type is LIVE", () => {
       expect((getStatusLabel(LIVE, TIMESTAMP))).toBe(LIVE.label)
    })
 
-   it("returns the status label if the status type is CANCELED", () => {
+   it("should return the status label if the status type is CANCELED", () => {
       expect((getStatusLabel(CANCELED, TIMESTAMP))).toBe(CANCELED.label)
    })
 
-   it("returns the formatted time if the status type is NOT STATED", () => {
+   it("should return the formatted time if the status type is NOT STATED", () => {
       expect((getStatusLabel(NOTSTARTED, TIMESTAMP))).not.toBe(NOTSTARTED.label)
       expect((getStatusLabel(NOTSTARTED, TIMESTAMP))).toBe(FORMATTED_TIMESTAMP)
    })
