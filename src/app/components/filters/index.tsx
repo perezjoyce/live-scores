@@ -1,7 +1,7 @@
 "use client"
 import { useMemo } from 'react'
 import { useDispatch } from 'react-redux'
-import { CountObj, FilterObj, FilterType } from '@/data/types'
+import { CountObj, FilterType } from '@/data/types'
 import { AppDispatch, useAppSelector } from '@/redux/store'
 import { goToPage } from '@/redux/features/paginationSlice'
 import { setFilter } from '@/redux/features/filterSlice'
@@ -9,13 +9,7 @@ import MemoizedFilterItem from '@/common/filterItem'
 import countSportsData from '@/filters/utils/countSportsData'
 
 export default function Filters() {
-   const {
-      currentFilter,
-      selectedFilter
-   }: {
-      currentFilter: FilterObj,
-      selectedFilter: FilterType
-   } = useAppSelector((state) => state.filterReducer.value)
+   const selectedFilter: FilterType = useAppSelector((state) => state.filterReducer.value.selectedFilter)
 
    const dispatch = useDispatch<AppDispatch>();
 
@@ -32,7 +26,6 @@ export default function Filters() {
             {Object.values(FilterType).map(filterType => (
                <MemoizedFilterItem
                   key={filterType}
-                  currentFilter={currentFilter.type}
                   selectedFilter={selectedFilter}
                   filterType={filterType}
                   count={counters?.[filterType]}

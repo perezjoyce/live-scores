@@ -1,7 +1,7 @@
 
 "use client"
 import { useDispatch } from 'react-redux'
-import { CountObj, FilterObj, FilterType } from '@/data/types'
+import { CountObj, FilterType } from '@/data/types'
 import { AppDispatch, useAppSelector } from '@/redux/store'
 import { toggleDrawer } from '@/redux/features/drawerSlice'
 import { setFilter } from '@/redux/features/filterSlice'
@@ -11,11 +11,9 @@ import { X_MARK_ICON } from '@/drawer/utils/icons'
 
 export default function Drawer() {
    const {
-      currentFilter,
       counters,
       selectedFilter
    }: {
-      currentFilter: FilterObj,
       counters: CountObj,
       selectedFilter: FilterType
    } = useAppSelector((state) => state.filterReducer.value)
@@ -53,7 +51,6 @@ export default function Drawer() {
             {Object.values(FilterType).map(filterType => (
                <MemoizedFilterItem
                   key={filterType}
-                  currentFilter={currentFilter.type}
                   selectedFilter={selectedFilter}
                   filterType={filterType}
                   count={counters?.[filterType]}

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { CountObj, InitialFilterState, FilterType, FilterObj } from '@/data/types'
+import { CountObj, InitialFilterState, FilterType } from '@/data/types'
 import { FilterMap } from '@/data/maps'
 
 const initialState = {
@@ -10,7 +10,6 @@ const initialState = {
          live: null,
          upcoming: null,
       } as CountObj,
-      currentFilter: FilterMap.get(FilterType.Upcoming) as FilterObj,
       selectedFilter: FilterType.All,
    }
 } as InitialFilterState
@@ -23,7 +22,6 @@ export const filter = createSlice({
          return {
             value: {
                ...state.value,
-               currentFilter: FilterMap.get(action.payload),
                selectedFilter: FilterMap.get(action.payload).type
             }
          }

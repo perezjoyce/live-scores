@@ -1,14 +1,14 @@
 "use client"
-import { FilterObj } from '@/data/types';
+import { FilterType } from '@/data/types';
 import { useAppSelector } from '@/redux/store'
 import capitalizeFirstLetter from '@/utils/capitalizeFirstLetter';
 
 export default function Header() {
-   const currentFilter: FilterObj = useAppSelector((state) => state.filterReducer.value.currentFilter)
+   const selectedFilter: FilterType = useAppSelector((state) => state.filterReducer.value.selectedFilter)
 
    return (
       <h2 className="text-xl font-semibold tracking-tight text-gray-900 lg:ml-3 mr-3">
-         {capitalizeFirstLetter(currentFilter.type)} Games
+         {capitalizeFirstLetter(selectedFilter)} Games
       </h2>
 
    )

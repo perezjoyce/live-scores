@@ -1,7 +1,7 @@
 "use client"
 import { useMemo } from 'react'
 import { useDispatch } from "react-redux"
-import { FilterObj, FilterType } from '@/data/types'
+import { FilterType } from '@/data/types'
 import { AppDispatch, useAppSelector } from '@/redux/store'
 import MemoizedCard from '@/app/components/card'
 import getSportsData from '@/cards/utils/getSportsData'
@@ -9,7 +9,6 @@ import Loader from '../loader'
 
 
 export default function Cards() {
-   const currentFilter: FilterObj = useAppSelector((state) => state.filterReducer.value.currentFilter)
    const selectedFilter: FilterType = useAppSelector((state) => state.filterReducer.value.selectedFilter)
 
    const currentPage: number = useAppSelector((state) => state.paginationReducer.value.currentPage)
@@ -17,8 +16,8 @@ export default function Cards() {
    const dispatch = useDispatch<AppDispatch>();
 
    const sportsData = useMemo(() => {
-      return getSportsData(currentFilter.type, selectedFilter, currentPage, dispatch)
-   }, [currentFilter, selectedFilter, currentPage])
+      return getSportsData(selectedFilter, currentPage, dispatch)
+   }, [selectedFilter, currentPage])
 
    return (
       <section className="bg-gray-200 grow overflow-y-scroll">

@@ -6,7 +6,6 @@ import getFilterAsStatus from '@/cards/utils/getFilterAsStatus'
 import { DATA_PER_PAGE } from '@/cards/utils/constants'
 
 export default function getSportsData(
-   currentFilter: string,
    selectedFilter: FilterType,
    currentPage: number,
    dispatch: Dispatch<Action>,
@@ -14,19 +13,19 @@ export default function getSportsData(
    {/*Test fails when sports json is imported from outside the function */ }
    const sports = require('../../../../data/sports.json');
 
-   const filteredSportsData = filterSportsData(sports, currentFilter, selectedFilter)
+   const filteredSportsData = filterSportsData(sports, selectedFilter)
    const paginatedData = paginateSportsData(filteredSportsData, currentPage, dispatch)
    const convertedData = convertSportsData(paginatedData)
 
    return convertedData;
 }
 
-function filterSportsData(sports, currentFilter, selectedFilter) {
+function filterSportsData(sports: any[], selectedFilter: FilterType) {
    const filteredData = Array.from(sports).filter((item) => item['status']['type'] === getFilterAsStatus(selectedFilter, item['status']['type']))
    return filteredData;
 }
 
-function paginateSportsData(sports, currentPage, dispatch) {
+function paginateSportsData(sports: any[], currentPage: number, dispatch: Dispatch<Action>) {
    const totalDataCount = sports.length;
    const pageCount = Math.ceil(totalDataCount / DATA_PER_PAGE);
    dispatch(setTotalPages(pageCount))
@@ -42,7 +41,7 @@ function paginateSportsData(sports, currentPage, dispatch) {
    return paginatedData
 }
 
-function convertSportsData(sports) {
+function convertSportsData(sports: any[]) {
    const convertedData = sports?.map(
       ({ id, competition, country, timestamp, status, homeTeam, awayTeam, homeScore, awayScore, liveStatus }) => (
          {

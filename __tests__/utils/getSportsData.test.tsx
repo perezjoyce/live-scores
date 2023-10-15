@@ -23,7 +23,7 @@ describe('getSportsData function', () => {
          const currentPage = 1
 
          const mockDispatch = jest.fn()
-         const convertedData = getSportsData(status, filter, currentPage, mockDispatch)
+         const convertedData = getSportsData(filter, currentPage, mockDispatch)
          for (const data of convertedData) {
             expect(data.status.type).toBe(status)
          }
@@ -35,7 +35,7 @@ describe('getSportsData function', () => {
          const currentPage = 1
 
          const mockDispatch = jest.fn()
-         const convertedData = getSportsData(status, filter, currentPage, mockDispatch)
+         const convertedData = getSportsData(filter, currentPage, mockDispatch)
          expect(convertedData.length).toEqual(DATA_PER_PAGE)
       })
 
@@ -46,7 +46,7 @@ describe('getSportsData function', () => {
          const remainingDocsCount = RESULT_DOCS_COUNT - (12 * (currentPage - 1))
 
          const mockDispatch = jest.fn()
-         const convertedData = getSportsData(status, filter, currentPage, mockDispatch)
+         const convertedData = getSportsData(filter, currentPage, mockDispatch)
          expect(convertedData.length).toEqual(remainingDocsCount)
       })
 
@@ -56,7 +56,7 @@ describe('getSportsData function', () => {
          const currentPage = 1
 
          const mockDispatch = jest.fn()
-         const convertedData = getSportsData(status, filter, currentPage, mockDispatch)
+         const convertedData = getSportsData(filter, currentPage, mockDispatch)
          for (const data of convertedData) {
             expect(data).toHaveProperty('id');
             expect(data).toHaveProperty('competition');
@@ -82,7 +82,7 @@ describe('getSportsData function', () => {
          const currentPage = 1
 
          const mockDispatch = jest.fn()
-         const convertedData = getSportsData(status, filter, currentPage, mockDispatch)
+         const convertedData = getSportsData(filter, currentPage, mockDispatch)
          for (const data of convertedData) {
             expect(data.status.type).toBe(status)
          }
@@ -94,7 +94,7 @@ describe('getSportsData function', () => {
          const currentPage = 1
 
          const mockDispatch = jest.fn()
-         const convertedData = getSportsData(status, filter, currentPage, mockDispatch)
+         const convertedData = getSportsData(filter, currentPage, mockDispatch)
          expect(convertedData.length).toBe(DATA_PER_PAGE)
       })
 
@@ -105,7 +105,7 @@ describe('getSportsData function', () => {
          const remainingDocsCount = LIVE_DOCS_COUNT - (12 * (currentPage - 1))
 
          const mockDispatch = jest.fn()
-         const convertedData = getSportsData(status, filter, currentPage, mockDispatch)
+         const convertedData = getSportsData(filter, currentPage, mockDispatch)
          expect(convertedData.length).toBe(remainingDocsCount)
       })
 
@@ -115,7 +115,7 @@ describe('getSportsData function', () => {
          const currentPage = 1
 
          const mockDispatch = jest.fn()
-         const convertedData = getSportsData(status, filter, currentPage, mockDispatch)
+         const convertedData = getSportsData(filter, currentPage, mockDispatch)
          for (const data of convertedData) {
             expect(data).toHaveProperty('id');
             expect(data).toHaveProperty('competition');
@@ -141,7 +141,7 @@ describe('getSportsData function', () => {
          const currentPage = 1
 
          const mockDispatch = jest.fn()
-         const convertedData = getSportsData(status, filter, currentPage, mockDispatch)
+         const convertedData = getSportsData(filter, currentPage, mockDispatch)
          for (const data of convertedData) {
             expect(data.status.type).toBe(status)
          }
@@ -153,7 +153,7 @@ describe('getSportsData function', () => {
          const currentPage = 1
 
          const mockDispatch = jest.fn()
-         const convertedData = getSportsData(status, filter, currentPage, mockDispatch)
+         const convertedData = getSportsData(filter, currentPage, mockDispatch)
          expect(convertedData.length).toBe(DATA_PER_PAGE)
       })
 
@@ -164,7 +164,7 @@ describe('getSportsData function', () => {
          const remainingDocsCount = UPCOMING_DOCS_COUNT - (12 * (currentPage - 1))
 
          const mockDispatch = jest.fn()
-         const convertedData = getSportsData(status, filter, currentPage, mockDispatch)
+         const convertedData = getSportsData(filter, currentPage, mockDispatch)
          expect(convertedData.length).toBe(remainingDocsCount)
       })
 
@@ -174,7 +174,7 @@ describe('getSportsData function', () => {
          const currentPage = 1
 
          const mockDispatch = jest.fn()
-         const convertedData = getSportsData(status, filter, currentPage, mockDispatch)
+         const convertedData = getSportsData(filter, currentPage, mockDispatch)
          for (const data of convertedData) {
             expect(data).toHaveProperty('id');
             expect(data).toHaveProperty('competition');
@@ -200,7 +200,7 @@ describe('getSportsData function', () => {
          const currentPage = 8
 
          const mockDispatch = jest.fn()
-         const allItems = getSportsData(status, filter, currentPage, mockDispatch)
+         const allItems = getSportsData(filter, currentPage, mockDispatch)
          expect(allItems).toBeDefined();
          expect(allItems.length).toBeGreaterThan(0);
 
@@ -214,7 +214,7 @@ describe('getSportsData function', () => {
          const currentPage = 1
 
          const mockDispatch = jest.fn()
-         const allItems = getSportsData(status, filter, currentPage, mockDispatch)
+         const allItems = getSportsData(filter, currentPage, mockDispatch)
          expect(allItems).toBeDefined();
          expect(allItems.length).toBeGreaterThan(0);
 
@@ -228,7 +228,7 @@ describe('getSportsData function', () => {
          const currentPage = 10
 
          const mockDispatch = jest.fn()
-         const allItems = getSportsData(status, filter, currentPage, mockDispatch)
+         const allItems = getSportsData(filter, currentPage, mockDispatch)
          expect(allItems).toBeDefined();
          expect(allItems.length).toBeGreaterThan(0);
 
@@ -242,7 +242,7 @@ describe('getSportsData function', () => {
          const currentPage = 12
 
          const mockDispatch = jest.fn()
-         const allItems = getSportsData(status, filter, currentPage, mockDispatch)
+         const allItems = getSportsData(filter, currentPage, mockDispatch)
          expect(allItems).toBeDefined();
          expect(allItems.length).toBeGreaterThan(0);
 

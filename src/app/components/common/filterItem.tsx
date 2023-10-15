@@ -4,14 +4,12 @@ import { FilterType } from '@/data/types'
 
 function FilterItem(
    {
-      currentFilter,
       selectedFilter,
       filterType,
       count,
       onClick,
       customStyles,
    }: {
-      currentFilter: FilterType,
       selectedFilter: FilterType,
       filterType: FilterType,
       count: number,
