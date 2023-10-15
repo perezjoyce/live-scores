@@ -3,7 +3,7 @@ import { STROKE_DASH_ARRAY, getOffset, getProgressLabel } from '@/card/utils'
 
 export default function Progress({ liveStatus }: { liveStatus: string }) {
    return (
-      <div className="w-20 h-20 relative">
+      <div className="w-20 h-20 relative" data-testid="progressIndicator">
          <p className="text-green-500 absolute top-7 left-8">{getProgressLabel(liveStatus)}</p>
 
          <svg className="w-full h-full" viewBox="0 0 100 100">

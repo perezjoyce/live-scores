@@ -5,8 +5,6 @@ import { FilterType } from '@/data/types'
 import { AppDispatch, useAppSelector } from '@/redux/store'
 import MemoizedCard from '@/app/components/card'
 import getSportsData from '@/cards/utils/getSportsData'
-import Loader from '../loader'
-
 
 export default function Cards() {
    const selectedFilter: FilterType = useAppSelector((state) => state.filterReducer.value.selectedFilter)
