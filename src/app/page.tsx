@@ -35,7 +35,9 @@ export default function Home() {
         </main>
 
         <footer className="flex justify-center items-center bg-gray-900 grow">
-          <small>Spinbet Coding Exam by Joyce P.</small>
+          <div className='text-xs'>Spinbet Coding Exam by&nbsp;
+            <a href="https://github.com/perezjoyce/live-scores" target="_blank" className="text-indigo-400 font-bold">Joyce P.</a>
+          </div>
         </footer>
       </div >
 

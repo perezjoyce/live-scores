@@ -9,7 +9,7 @@ function Card({ game }: { game: Game }) {
 
    return (
       <div
-         className="bg-gray-900 flex-auto max-w-none md:max-w-50% rounded lg:max-w-33% overflow-hidden shadow-lg p-6 text-center"
+         className="bg-gray-900 flex-auto max-w-none md:max-w-50% rounded lg:max-w-33% overflow-hidden shadow-lg p-6 text-center hover:bg-gradient-to-r hover:from-indigo-900 hover:to-blue-900 "
       >
          <small className="text-gray-300 text-sm">{country.toUpperCase()}</small>
          <h3 className="font-bold text-xl">{competition}</h3>
