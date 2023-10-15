@@ -9,11 +9,17 @@ import MemoizedFilterItem from '@/common/filterItem'
 import countSportsData from '@/filters/utils/countSportsData'
 
 export default function Filters() {
-   const { currentFilter, count }: { currentFilter: FilterObj, count: CountObj } = useAppSelector((state) => state.filterReducer.value)
+   const {
+      currentFilter,
+      selectedFilter
+   }: {
+      currentFilter: FilterObj,
+      selectedFilter: FilterType
+   } = useAppSelector((state) => state.filterReducer.value)
 
    const dispatch = useDispatch<AppDispatch>();
 
-   useMemo(() => countSportsData(dispatch), [])
+   const counters: CountObj = useMemo(() => countSportsData(dispatch), [])
 
    const onClickFilter = (filter: string): void => {
       dispatch(setFilter(filter))
@@ -27,8 +33,9 @@ export default function Filters() {
                <MemoizedFilterItem
                   key={filterType}
                   currentFilter={currentFilter.type}
+                  selectedFilter={selectedFilter}
                   filterType={filterType}
-                  count={count?.[filterType]}
+                  count={counters?.[filterType]}
                   onClick={onClickFilter}
                   customStyles="py-1 px-6"
                />

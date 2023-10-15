@@ -4,13 +4,14 @@ import { FilterMap } from '@/data/maps'
 
 const initialState = {
    value: {
-      count: {
+      counters: {
          all: null,
          result: null,
          live: null,
          upcoming: null,
       } as CountObj,
-      currentFilter: FilterMap.get(FilterType.All) as FilterObj,
+      currentFilter: FilterMap.get(FilterType.Upcoming) as FilterObj,
+      selectedFilter: FilterType.All,
    }
 } as InitialFilterState
 
@@ -22,7 +23,8 @@ export const filter = createSlice({
          return {
             value: {
                ...state.value,
-               currentFilter: FilterMap.get(action.payload)
+               currentFilter: FilterMap.get(action.payload),
+               selectedFilter: FilterMap.get(action.payload).type
             }
          }
       },
@@ -30,7 +32,7 @@ export const filter = createSlice({
          return {
             value: {
                ...state.value,
-               count: action.payload,
+               counters: action.payload,
             }
          }
       }

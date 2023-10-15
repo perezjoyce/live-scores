@@ -1,6 +1,6 @@
 import { FilterType, StatusType } from "@/data/types"
 
-export default function getFilterAsStatus(filterType: string, itemStatusType): string {
+export default function getFilterAsStatus(filterType: FilterType, itemStatusType: string): string {
    switch (filterType) {
       case FilterType.Live:
          return StatusType.Inprogress

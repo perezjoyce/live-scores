@@ -13,6 +13,9 @@
       "@/redux/*": [
         "redux/*"
       ],
+      "@/tests/*": [
+        "__tests__/*"
+      ],
       "@/utils/*": [
         "app/utils/*"
       ],

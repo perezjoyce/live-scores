@@ -38,7 +38,8 @@ export type PaginationState = {
 export type InitialFilterState = {
    value: {
       currentFilter: FilterObj,
-      count: CountObj,
+      counters: CountObj,
+      selectedFilter: FilterType,
    }
 }
 

@@ -10,7 +10,15 @@ import MemoizedFilterItem from '@/common/filterItem'
 import { X_MARK_ICON } from '@/drawer/utils/icons'
 
 export default function Drawer() {
-   const { currentFilter, count }: { currentFilter: FilterObj, count: CountObj } = useAppSelector((state) => state.filterReducer.value)
+   const {
+      currentFilter,
+      counters,
+      selectedFilter
+   }: {
+      currentFilter: FilterObj,
+      counters: CountObj,
+      selectedFilter: FilterType
+   } = useAppSelector((state) => state.filterReducer.value)
 
    const dispatch = useDispatch<AppDispatch>();
 
@@ -46,8 +54,9 @@ export default function Drawer() {
                <MemoizedFilterItem
                   key={filterType}
                   currentFilter={currentFilter.type}
+                  selectedFilter={selectedFilter}
                   filterType={filterType}
-                  count={count?.[filterType]}
+                  count={counters?.[filterType]}
                   onClick={onClickFilter}
                   customStyles="ustify-between p-3"
                />

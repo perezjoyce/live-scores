@@ -11,6 +11,9 @@
       "@/redux/*": [
         "redux/*"
       ],
+      "@/tests/*": [
+        "__tests__/*"
+      ],
       "@/utils/*": [
         "app/utils/*"
       ],
@@ -71,7 +74,8 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "__tests__/utils/capitalizeFirstLetter.test.tsx"
   ],
   "exclude": [
     "node_modules"

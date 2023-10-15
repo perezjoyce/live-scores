@@ -5,12 +5,11 @@ export const FilterMap = new Map([
    ["result", { type: FilterType.Result, label: "Result" }],
    ["live", { type: FilterType.Live, label: "Live" }],
    ["upcoming", { type: FilterType.Upcoming, label: "Upcoming" }],
-   ["canceled", { type: FilterType.Upcoming, label: "Cancelled" }],
 ])
 
 export const StatusMap = new Map([
    ["finished", { type: StatusType.Finished, label: "ENDED" }],
    ["inprogress", { type: StatusType.Inprogress, label: "LIVE" }],
-   ["notstarted", { type: StatusType.NotStarted, label: "NOT STARTED" }],
+   ["notstarted", { type: StatusType.NotStarted, label: "UPCOMING" }],
    ["canceled", { type: StatusType.Canceled, label: "CANCELLED" }],
 ])

@@ -1,11 +1,11 @@
 export default function formatTime(timestamp: number): string {
   const date = new Date(timestamp * 1000);
   const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUNE', 'JULY', 'AUG', 'SEPT', 'OCT', 'NOV', 'DEC',];
-  const month = months[date.getUTCDate()]
+  const month = months[date.getUTCMonth()]
 
-  const day = date.getDate()
-  const hours = date.getHours()
-  const mins = date.getMinutes()
+  const day = date.getUTCDate()
+  let hours = String(date.getUTCHours()).padStart(2, '0');
+  let mins = String(date.getUTCMinutes()).padStart(2, '0');
 
   return `${month} ${day}${(nth(day))} ${hours}:${mins}`
 }

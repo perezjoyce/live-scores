@@ -1,5 +1,5 @@
 "use client"
-import { getProgress, getProgressLabel } from '@/card/utils'
+import { STROKE_DASH_ARRAY, getOffset, getProgressLabel } from '@/card/utils'
 
 export default function Progress({ liveStatus }: { liveStatus: string }) {
    return (
@@ -15,8 +15,23 @@ export default function Progress({ liveStatus }: { liveStatus: string }) {
                r="40"
                fill="transparent"
             ></circle>
-
-            {getProgress(liveStatus)}
+            {
+               !["Canceled", "-"].includes(liveStatus) &&
+               (
+                  <circle
+                     className="text-green-500 stroke-current"
+                     strokeWidth="4"
+                     strokeLinecap="round"
+                     cx="50"
+                     cy="50"
+                     r="40"
+                     fill="none"
+                     strokeDasharray={STROKE_DASH_ARRAY}
+                     strokeDashoffset={getOffset(liveStatus)}
+                     transform="rotate(-90) translate(-100 0)"
+                  />
+               )
+            }
          </svg>
       </div>
    )

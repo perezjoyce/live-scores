@@ -1,6 +1,6 @@
 export * from '@/card/utils/constants'
 export { default as formatTime } from '@/card/utils/formatTime'
-export { default as getProgress } from '@/card/utils/getProgress'
+export { default as getOffset } from '@/app/components/card/utils/getOffset'
 export { default as getProgressLabel } from '@/card/utils/getProgressLabel'
 export { default as getStatusLabel } from '@/card/utils/getStatusLabel'
 export { default as stripNonNumChars } from '@/card/utils/stripNonNumChars'
